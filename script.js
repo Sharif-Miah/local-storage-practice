@@ -2,20 +2,22 @@
 const storage = () => {
     const product = document.getElementById('product').value;
 
-    const quentity = document.getElementById('quentity').value;
-    console.log(product, quentity);
+    const quantity = document.getElementById('quantity').value;
 
-    const cart = {}
-    cart[product] = quentity;
-    localStorage.setItem('cart', JSON.stringify(cart))
+    addProductDB(product, quantity)
+
 }
 
-const getStore = () => {
+const getStoreCart = () => {
     const storeCart = localStorage.getItem('cart')
-    const cart = {}
+    let cart = {}
     if (storeCart) {
         cart = JSON.parse(storeCart)
-    } else {
-        return cart
-    }
+    } return cart
+}
+
+const addProductDB = (product, quantity) => {
+    let cart = getStoreCart();
+    cart[product] = quantity;
+    localStorage.setItem('cart', JSON.stringify(cart))
 }
